@@ -1,5 +1,11 @@
 #!/bin/sh
 
+# Handle execution as pmPostInstall.script
+if [ -z "$IPKG_OFFLINE_ROOT" ]; then
+  IPKG_OFFLINE_ROOT=/media/cryptofs/apps
+  mount -o remount,rw /
+fi
+
 rm -rf /media/internal/.widk/usr/lib/locale
 mkdir -p /media/internal/.widk/usr/lib/locale
 
@@ -7,6 +13,6 @@ tar --no-same-owner -C /media/internal/.widk/usr/lib/locale -zxf \
 	$IPKG_OFFLINE_ROOT/usr/palm/applications/org.webosinternals.locale/locales.tar.gz
 
 if [ ! -e /usr/lib/locale ] ; then
-	ln -s /media/internal/.local/lib/locale /usr/lib/locale
+	ln -s /media/internal/.widk/usr/lib/locale /usr/lib/locale
 fi
 

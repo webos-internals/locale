@@ -1,7 +1,7 @@
 #!/bin/sh
 
 lnk=$(readlink /usr/lib/locale)
-tgt=/media/internal/.local/lib/locale
+tgt=/media/internal/.widk/usr/lib/locale
 
 if [ "x$lnk" == "x$tgt" ]
 then
